@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #0f3d2e;
+  --color-ink-soft: #2c5a49;
+  --color-paper: #f7f3ea;
+  --color-card: #fffdf8;
+  --color-line: #e4dccb;
+  --color-gold: #f5c542;
+  --color-gold-deep: #d9a21b;
+  --color-coral: #ef6f53;
+  --color-mint: #cfe9dc;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bilhete com recortes laterais */
+.ticket {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+}
+.ticket-cut::before,
+.ticket-cut::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  transform: translateY(-50%);
+}
+.ticket-cut::before { left: -12px; clip-path: inset(0 0 0 50%); }
+.ticket-cut::after { right: -12px; clip-path: inset(0 50% 0 0); }
+
+.dashed-divider {
+  background-image: linear-gradient(to right, var(--color-line) 50%, transparent 50%);
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+  height: 1px;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  70% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.animate-pop { animation: pop 0.5s cubic-bezier(.2,.9,.3,1.3) both; }
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0); opacity: 1; }
+  100% { transform: translateY(420px) rotate(540deg); opacity: 0; }
+}

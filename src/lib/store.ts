@@ -112,7 +112,13 @@ const listeners = new Set<() => void>()
 function load(): DB {
   try {
     const raw = localStorage.getItem(KEY)
-    if (raw) return JSON.parse(raw) as DB
+    if (raw) {
+      const parsed = JSON.parse(raw) as Partial<DB> | null
+      // dados de versões antigas/corrompidos derrubariam a renderização (tela branca)
+      if (parsed && Array.isArray(parsed.campaigns) && Array.isArray(parsed.orders)) {
+        return parsed as DB
+      }
+    }
   } catch {
     /* localStorage indisponível */
   }

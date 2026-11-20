@@ -6,6 +6,8 @@ O diferencial é o **sorteio auditável**. O número vencedor é calculado com S
 
 ![Página inicial](docs/home.png)
 
+🌐 **Acesse:** https://kondoca.github.io/Sorteia/
+
 ## Funcionalidades
 
 **Participante**
